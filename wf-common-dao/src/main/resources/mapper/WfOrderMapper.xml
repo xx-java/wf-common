@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.WfOrderMapper">
+
+    <select id="getWfOrderById" resultType="com.zb.pojo.WfOrder">
+        select
+                orderid as orderid,
+                payment as payment,
+                paymenttype as paymenttype,
+                postfee as postfee,
+                status as status,
+                createtime as createtime,
+                updatetime as updatetime,
+                paymenttime as paymenttime,
+                consigntime as consigntime,
+                endtime as endtime,
+                closetime as closetime,
+                shippingname as shippingname,
+                shippingcode as shippingcode,
+                userid as userid,
+                buyermessage as buyermessage,
+                buyernick as buyernick,
+                buyerrake as buyerrake
+        from wf_order
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getWfOrderListByMap" resultType="com.zb.pojo.WfOrder" parameterType="java.util.Map">
+        select
+                orderid as orderid,
+                payment as payment,
+                paymenttype as paymenttype,
+                postfee as postfee,
+                status as status,
+                createtime as createtime,
+                updatetime as updatetime,
+                paymenttime as paymenttime,
+                consigntime as consigntime,
+                endtime as endtime,
+                closetime as closetime,
+                shippingname as shippingname,
+                shippingcode as shippingcode,
+                userid as userid,
+                buyermessage as buyermessage,
+                buyernick as buyernick,
+                buyerrake as buyerrake
+        from wf_order
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="orderid != null and orderid!=''">
+                    and orderid=#{orderid}
+                </if>
+                <if test="payment != null and payment!=''">
+                    and payment=#{payment}
+                </if>
+                <if test="paymenttype != null and paymenttype!=''">
+                    and paymenttype=#{paymenttype}
+                </if>
+                <if test="postfee != null and postfee!=''">
+                    and postfee=#{postfee}
+                </if>
+                <if test="status != null and status!=''">
+                    and status=#{status}
+                </if>
+                <if test="createtime != null and createtime!=''">
+                    and createtime=#{createtime}
+                </if>
+                <if test="updatetime != null and updatetime!=''">
+                    and updatetime=#{updatetime}
+                </if>
+                <if test="paymenttime != null and paymenttime!=''">
+                    and paymenttime=#{paymenttime}
+                </if>
+                <if test="consigntime != null and consigntime!=''">
+                    and consigntime=#{consigntime}
+                </if>
+                <if test="endtime != null and endtime!=''">
+                    and endtime=#{endtime}
+                </if>
+                <if test="closetime != null and closetime!=''">
+                    and closetime=#{closetime}
+                </if>
+                <if test="shippingname != null and shippingname!=''">
+                    and shippingname=#{shippingname}
+                </if>
+                <if test="shippingcode != null and shippingcode!=''">
+                    and shippingcode=#{shippingcode}
+                </if>
+                <if test="userid != null and userid!=''">
+                    and userid=#{userid}
+                </if>
+                <if test="buyermessage != null and buyermessage!=''">
+                    and buyermessage=#{buyermessage}
+                </if>
+                <if test="buyernick != null and buyernick!=''">
+                    and buyernick=#{buyernick}
+                </if>
+                <if test="buyerrake != null and buyerrake!=''">
+                    and buyerrake=#{buyerrake}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getWfOrderCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from wf_order
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="orderid != null and orderid!=''">
+                    and orderid=#{orderid}
+                </if>
+                <if test="payment != null and payment!=''">
+                    and payment=#{payment}
+                </if>
+                <if test="paymenttype != null and paymenttype!=''">
+                    and paymenttype=#{paymenttype}
+                </if>
+                <if test="postfee != null and postfee!=''">
+                    and postfee=#{postfee}
+                </if>
+                <if test="status != null and status!=''">
+                    and status=#{status}
+                </if>
+                <if test="createtime != null and createtime!=''">
+                    and createtime=#{createtime}
+                </if>
+                <if test="updatetime != null and updatetime!=''">
+                    and updatetime=#{updatetime}
+                </if>
+                <if test="paymenttime != null and paymenttime!=''">
+                    and paymenttime=#{paymenttime}
+                </if>
+                <if test="consigntime != null and consigntime!=''">
+                    and consigntime=#{consigntime}
+                </if>
+                <if test="endtime != null and endtime!=''">
+                    and endtime=#{endtime}
+                </if>
+                <if test="closetime != null and closetime!=''">
+                    and closetime=#{closetime}
+                </if>
+                <if test="shippingname != null and shippingname!=''">
+                    and shippingname=#{shippingname}
+                </if>
+                <if test="shippingcode != null and shippingcode!=''">
+                    and shippingcode=#{shippingcode}
+                </if>
+                <if test="userid != null and userid!=''">
+                    and userid=#{userid}
+                </if>
+                <if test="buyermessage != null and buyermessage!=''">
+                    and buyermessage=#{buyermessage}
+                </if>
+                <if test="buyernick != null and buyernick!=''">
+                    and buyernick=#{buyernick}
+                </if>
+                <if test="buyerrake != null and buyerrake!=''">
+                    and buyerrake=#{buyerrake}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertWfOrder" parameterType="com.zb.pojo.WfOrder">
+        insert into wf_order(
+                        orderid,
+                        payment,
+                        paymenttype,
+                        postfee,
+                        status,
+                        createtime,
+                        updatetime,
+                        paymenttime,
+                        consigntime,
+                        endtime,
+                        closetime,
+                        shippingname,
+                        shippingcode,
+                        userid,
+                        buyermessage,
+                        buyernick,
+                        buyerrake)
+        values(
+                     #{orderid},
+                     #{payment},
+                     #{paymenttype},
+                     #{postfee},
+                     #{status},
+                     #{createtime},
+                     #{updatetime},
+                     #{paymenttime},
+                     #{consigntime},
+                     #{endtime},
+                     #{closetime},
+                     #{shippingname},
+                     #{shippingcode},
+                     #{userid},
+                     #{buyermessage},
+                     #{buyernick},
+                    #{buyerrake})
+    </insert>
+
+    <update id="updateWfOrder" parameterType="com.zb.pojo.WfOrder">
+        update wf_order
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="orderid != null and orderid!=''">
+                            orderid=#{orderid},
+                        </if>
+                        <if test="payment != null and payment!=''">
+                            payment=#{payment},
+                        </if>
+                        <if test="paymenttype != null and paymenttype!=''">
+                            paymenttype=#{paymenttype},
+                        </if>
+                        <if test="postfee != null and postfee!=''">
+                            postfee=#{postfee},
+                        </if>
+                        <if test="status != null and status!=''">
+                            status=#{status},
+                        </if>
+                        <if test="createtime != null and createtime!=''">
+                            createtime=#{createtime},
+                        </if>
+                        <if test="updatetime != null and updatetime!=''">
+                            updatetime=#{updatetime},
+                        </if>
+                        <if test="paymenttime != null and paymenttime!=''">
+                            paymenttime=#{paymenttime},
+                        </if>
+                        <if test="consigntime != null and consigntime!=''">
+                            consigntime=#{consigntime},
+                        </if>
+                        <if test="endtime != null and endtime!=''">
+                            endtime=#{endtime},
+                        </if>
+                        <if test="closetime != null and closetime!=''">
+                            closetime=#{closetime},
+                        </if>
+                        <if test="shippingname != null and shippingname!=''">
+                            shippingname=#{shippingname},
+                        </if>
+                        <if test="shippingcode != null and shippingcode!=''">
+                            shippingcode=#{shippingcode},
+                        </if>
+                        <if test="userid != null and userid!=''">
+                            userid=#{userid},
+                        </if>
+                        <if test="buyermessage != null and buyermessage!=''">
+                            buyermessage=#{buyermessage},
+                        </if>
+                        <if test="buyernick != null and buyernick!=''">
+                            buyernick=#{buyernick},
+                        </if>
+                        <if test="buyerrake != null and buyerrake!=''">
+                            buyerrake=#{buyerrake}
+                        </if>
+        </trim>
+    </update>
+</mapper>

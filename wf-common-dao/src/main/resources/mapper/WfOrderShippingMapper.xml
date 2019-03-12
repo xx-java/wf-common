@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zb.mapper.WfOrderShippingMapper">
+
+    <select id="getWfOrderShippingById" resultType="com.zb.pojo.WfOrderShipping">
+        select
+                orderid as orderid,
+                rname as rname,
+                rphone as rphone,
+                rmobile as rmobile,
+                rstate as rstate,
+                rcity as rcity,
+                rdistrict as rdistrict,
+                raddress as raddress,
+                rzip as rzip,
+                created as created,
+                updated as updated
+        from wf_order_shipping
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getWfOrderShippingListByMap" resultType="com.zb.pojo.WfOrderShipping" parameterType="java.util.Map">
+        select
+                orderid as orderid,
+                rname as rname,
+                rphone as rphone,
+                rmobile as rmobile,
+                rstate as rstate,
+                rcity as rcity,
+                rdistrict as rdistrict,
+                raddress as raddress,
+                rzip as rzip,
+                created as created,
+                updated as updated
+        from wf_order_shipping
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="orderid != null and orderid!=''">
+                    and orderid=#{orderid}
+                </if>
+                <if test="rname != null and rname!=''">
+                    and rname=#{rname}
+                </if>
+                <if test="rphone != null and rphone!=''">
+                    and rphone=#{rphone}
+                </if>
+                <if test="rmobile != null and rmobile!=''">
+                    and rmobile=#{rmobile}
+                </if>
+                <if test="rstate != null and rstate!=''">
+                    and rstate=#{rstate}
+                </if>
+                <if test="rcity != null and rcity!=''">
+                    and rcity=#{rcity}
+                </if>
+                <if test="rdistrict != null and rdistrict!=''">
+                    and rdistrict=#{rdistrict}
+                </if>
+                <if test="raddress != null and raddress!=''">
+                    and raddress=#{raddress}
+                </if>
+                <if test="rzip != null and rzip!=''">
+                    and rzip=#{rzip}
+                </if>
+                <if test="created != null and created!=''">
+                    and created=#{created}
+                </if>
+                <if test="updated != null and updated!=''">
+                    and updated=#{updated}
+                </if>
+        </trim>
+        <if test="beginPos != null and pageSize != null ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getWfOrderShippingCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from wf_order_shipping
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="orderid != null and orderid!=''">
+                    and orderid=#{orderid}
+                </if>
+                <if test="rname != null and rname!=''">
+                    and rname=#{rname}
+                </if>
+                <if test="rphone != null and rphone!=''">
+                    and rphone=#{rphone}
+                </if>
+                <if test="rmobile != null and rmobile!=''">
+                    and rmobile=#{rmobile}
+                </if>
+                <if test="rstate != null and rstate!=''">
+                    and rstate=#{rstate}
+                </if>
+                <if test="rcity != null and rcity!=''">
+                    and rcity=#{rcity}
+                </if>
+                <if test="rdistrict != null and rdistrict!=''">
+                    and rdistrict=#{rdistrict}
+                </if>
+                <if test="raddress != null and raddress!=''">
+                    and raddress=#{raddress}
+                </if>
+                <if test="rzip != null and rzip!=''">
+                    and rzip=#{rzip}
+                </if>
+                <if test="created != null and created!=''">
+                    and created=#{created}
+                </if>
+                <if test="updated != null and updated!=''">
+                    and updated=#{updated}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertWfOrderShipping" parameterType="com.zb.pojo.WfOrderShipping">
+        insert into wf_order_shipping(
+                        orderid,
+                        rname,
+                        rphone,
+                        rmobile,
+                        rstate,
+                        rcity,
+                        rdistrict,
+                        raddress,
+                        rzip,
+                        created,
+                        updated)
+        values(
+                     #{orderid},
+                     #{rname},
+                     #{rphone},
+                     #{rmobile},
+                     #{rstate},
+                     #{rcity},
+                     #{rdistrict},
+                     #{raddress},
+                     #{rzip},
+                     #{created},
+                    #{updated})
+    </insert>
+
+    <update id="updateWfOrderShipping" parameterType="com.zb.pojo.WfOrderShipping">
+        update wf_order_shipping
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                        <if test="orderid != null and orderid!=''">
+                            orderid=#{orderid},
+                        </if>
+                        <if test="rname != null and rname!=''">
+                            rname=#{rname},
+                        </if>
+                        <if test="rphone != null and rphone!=''">
+                            rphone=#{rphone},
+                        </if>
+                        <if test="rmobile != null and rmobile!=''">
+                            rmobile=#{rmobile},
+                        </if>
+                        <if test="rstate != null and rstate!=''">
+                            rstate=#{rstate},
+                        </if>
+                        <if test="rcity != null and rcity!=''">
+                            rcity=#{rcity},
+                        </if>
+                        <if test="rdistrict != null and rdistrict!=''">
+                            rdistrict=#{rdistrict},
+                        </if>
+                        <if test="raddress != null and raddress!=''">
+                            raddress=#{raddress},
+                        </if>
+                        <if test="rzip != null and rzip!=''">
+                            rzip=#{rzip},
+                        </if>
+                        <if test="created != null and created!=''">
+                            created=#{created},
+                        </if>
+                        <if test="updated != null and updated!=''">
+                            updated=#{updated}
+                        </if>
+        </trim>
+    </update>
+</mapper>
