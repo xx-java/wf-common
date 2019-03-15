@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
+/**
+ * xx
+ * */
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
 
